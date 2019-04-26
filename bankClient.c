@@ -56,10 +56,21 @@ int main(int argc, char **argv)
     {
         return -1;
     }
+    /*Convert Variables to integers*/
+    /*First make argv[3] the command, into an integer, and check if it is a valid transaction*/
+    int transNum = atoi(argv[3]); //make command into int
+    if(transNum > 2 || transNum < 0){
+        printf("Invalid Transaction."); 
+        return -1;
+    }
+    /*Do same for account number*/
+    int accNum = atoi(argv[4]); 
+    /*Now do the same for the value*/
+    int valNum = atoi(argv[5]); //value will be given in pennies, converted when display is needed
+    /*Set up structure for transaction*/
+    sBANK_PROTOCOL transaction = {transNum, accNum, valNum};
 
-
-
-
+    /*Send message and receive it for processing*/
 
 
 
