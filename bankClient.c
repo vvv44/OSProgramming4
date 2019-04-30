@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <stdlib.h>
+#include <string.h>
 #include "banking.h"
 
 int setupTCPClient(char *servIPAddr, unsigned int portNum)
@@ -86,7 +88,7 @@ int main(int argc, char **argv)
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
     transactionReceived.value =  ntohs(transactionReceived.value);
 
-    
+
 
     close(mySocket);
 }
