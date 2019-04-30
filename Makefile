@@ -1,8 +1,5 @@
-all: bank.o 
-	gcc bank.o -o program 
-
-bank.o: banking.h bankClient.c
-	gcc -c bankClient.c
+bankClient: banking.h bankClient.c
+	gcc -c bankClient.c -o program
 
 clean:
 	rm *.o; rm bankClient
