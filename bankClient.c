@@ -68,11 +68,25 @@ int main(int argc, char **argv)
     /*Now do the same for the value*/
     int valNum = atoi(argv[5]); //value will be given in pennies, converted when display is needed
     /*Set up structure for transaction*/
-    sBANK_PROTOCOL transaction = {transNum, accNum, valNum};
+    sBANK_PROTOCOL transactionStruct = {transNum, accNum, valNum};
+    /*Convert values to network byte order*/
+    transactionStruct.trans = htons(transactionStruct.trans);
+    transactionStruct.acctnum = htons(transactionStruct.acctnum);
+    transactionStruct.value = htons(transactionStruct.value);
 
-    /*Send message and receive it for processing*/
+    /*Send message*/
+    send(mySocket,&transactionStruct,sizeof(transactionStruct),0);
+    
+    /*Receive message and process*/
+    //Declare struct to receive message
+    sBANK_PROTOCOL transactionReceived;
+    //receive message
+    recv(mySocket, &transactionReceived, sizeof(transactionReceived),0);
+    transactionReceived.trans =  ntohs(transactionReceived.trans);
+    transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
+    transactionReceived.value =  ntohs(transactionReceived.value);
 
-
+    
 
     close(mySocket);
 }
