@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "banking.h"
+#include  <unistd.h>
 
 int setupTCPClient(char *servIPAddr, unsigned int portNum)
 {
