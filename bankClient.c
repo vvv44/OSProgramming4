@@ -75,9 +75,9 @@ int main(int argc, char **argv)
     /*Set up structure for transaction*/
     sBANK_PROTOCOL transactionStruct = {transNum, accNum, valNum};
     /*Convert values to network byte order*/
-    transactionStruct.trans = htons(transactionStruct.trans);
+ /*    transactionStruct.trans = htons(transactionStruct.trans);
     transactionStruct.acctnum = htons(transactionStruct.acctnum);
-    transactionStruct.value = htons(transactionStruct.value);
+    transactionStruct.value = htons(transactionStruct.value); */
 
     /*Send message*/
     send(mySocket,&transactionStruct,sizeof(transactionStruct),0);
@@ -87,9 +87,9 @@ int main(int argc, char **argv)
     sBANK_PROTOCOL transactionReceived;
     //receive message and convert values
     recv(mySocket, &transactionReceived, sizeof(transactionReceived),0);
-    transactionReceived.trans =  ntohs(transactionReceived.trans);
+    /* transactionReceived.trans =  ntohs(transactionReceived.trans);
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
-    transactionReceived.value =  ntohs(transactionReceived.value);
+    transactionReceived.value =  ntohs(transactionReceived.value); */
 
     //Interpret values
     if(transactionReceived.trans == 2){ //BALANCE INQUIRY
