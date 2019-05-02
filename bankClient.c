@@ -89,10 +89,7 @@ int main(int argc, char **argv)
     if(send(mySocket,&transactionStruct,sizeof(transactionStruct),0) == -1){
         printf("Failed The Send");
     }
-    
-    //FIXME
-    printf("%u, %u, %u \n", transactionStruct.trans,transactionStruct.acctnum,transactionStruct.value);
-    
+     
     /*Receive message and process*/
     //Declare struct to receive message
     sBANK_PROTOCOL transactionReceived;
@@ -101,8 +98,6 @@ int main(int argc, char **argv)
         printf("Failed The Receipt");
     }
 
-    //FIXME
-    printf("%u, %u, %u \n", transactionReceived.trans,transactionReceived.acctnum,transactionReceived.value);
 
     //Interpret values
     if(transactionReceived.trans == 2){ //BALANCE INQUIRY
