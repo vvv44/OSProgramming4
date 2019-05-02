@@ -54,6 +54,9 @@ int main(int argc, char **argv)
 	/* Setup TCP port number */
 	portNum = atoi(argv[2]);
 
+    /*FIXME: PRINT TO CHECK*/
+    printf("NOT Connected, will try to do more things.");
+
     /* Setup the client socket */
     if((mySocket = setupTCPClient(serverIP, portNum)) < 0)
     {
