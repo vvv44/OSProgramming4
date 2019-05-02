@@ -75,10 +75,10 @@ int main(int argc, char **argv)
     /*Set up structure for transaction*/
     sBANK_PROTOCOL transactionStruct = {transNum, accNum, valNum};
     /*Convert values to network byte order*/
- /*    transactionStruct.trans = htons(transactionStruct.trans);
+    transactionStruct.trans = htons(transactionStruct.trans);
     transactionStruct.acctnum = htons(transactionStruct.acctnum);
-    transactionStruct.value = htons(transactionStruct.value); */
-
+    transactionStruct.value = htons(transactionStruct.value); 
+ 
     printf("%d , %d , %d" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value);
     /*Send message*/
     if(send(mySocket,&transactionStruct,sizeof(transactionStruct),0) == -1){
@@ -88,12 +88,11 @@ int main(int argc, char **argv)
     /*Receive message and process*/
     //Declare struct to receive message
     sBANK_PROTOCOL transactionReceived;
-    char buffer[1500];
     //receive message and convert values
-    if(recv(mySocket, &buffer, 1500,0) == -1){
+    if(recv(mySocket, &transactionReceived, sizeof(&transactionReceived),0) == -1){
         printf("Failed The Receipt");
     }
-    printf("%s \n", buffer);
+    printf("%s \n", transactionReceived);
     /* transactionReceived.trans =  ntohs(transactionReceived.trans);
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
     transactionReceived.value =  ntohs(transactionReceived.value); */
