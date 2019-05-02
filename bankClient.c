@@ -79,7 +79,7 @@ int main(int argc, char **argv)
     transactionStruct.acctnum = htons(transactionStruct.acctnum);
     transactionStruct.value = htons(transactionStruct.value); 
   */
-    printf("%d , %d , %d" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value);
+    printf("%d , %d , %d \n" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value);
     /*Send message*/
     if(send(mySocket,&transactionStruct,sizeof(transactionStruct),0) == -1){
         printf("Failed The Send");
@@ -92,6 +92,7 @@ int main(int argc, char **argv)
     if(recv(mySocket, &transactionReceived, sizeof(&transactionReceived),0) == -1){
         printf("Failed The Receipt");
     }
+     printf("%d , %d , %d \n" , transactionReceived.trans, transactionReceived.acctnum, transactionReceived.value);
    /*  transactionReceived.trans =  ntohs(transactionReceived.trans);
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
     transactionReceived.value =  ntohs(transactionReceived.value); */
