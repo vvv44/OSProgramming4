@@ -74,10 +74,6 @@ int main(int argc, char **argv)
     int valNum = atoi(argv[5]); //value will be given in pennies, converted when display is needed
     /*Set up structure for transaction*/
     sBANK_PROTOCOL transactionStruct = {transNum, accNum, valNum};
-    /*Convert values to network byte order*/
-   /*  transactionStruct.trans = htons(transactionStruct.trans);
-    transactionStruct.acctnum = htons(transactionStruct.acctnum);
-    transactionStruct.value = htons(transactionStruct.value);  */
  
     printf("%d , %d , %d \n" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value);
     /*Send message*/
@@ -92,14 +88,12 @@ int main(int argc, char **argv)
     if(recv(mySocket, &transactionReceived, sizeof(&transactionReceived),0) == -1){
         printf("Failed The Receipt");
     }
-    /* transactionReceived.trans =  ntohs(transactionReceived.trans);
-    transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
-    transactionReceived.value =  ntohs(transactionReceived.value); */
+ 
     printf("%d , %d , %d \n" , transactionReceived.trans, transactionReceived.acctnum, transactionReceived.value);
   
 
     //Interpret values
-   /*  if(transactionReceived.trans == 2){ //BALANCE INQUIRY
+    if(transactionReceived.trans == 2){ //BALANCE INQUIRY
         printf("The balance on the account %d is: %d dollars \n" , transactionReceived.acctnum, transactionReceived.value);
     }
     else if(transactionReceived.trans == 1){//WITHDRAW
@@ -111,7 +105,7 @@ int main(int argc, char **argv)
     }
     else{//DEPOSIT
         printf("Transaction Completed. Deposited amount: %d into account: %d \n", transactionReceived.value, transactionReceived.acctnum);
-    } */
+    }
 
     close(mySocket);
 }
