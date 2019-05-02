@@ -79,6 +79,7 @@ int main(int argc, char **argv)
     transactionStruct.acctnum = htons(transactionStruct.acctnum);
     transactionStruct.value = htons(transactionStruct.value); */
 
+    printf("%d , %d , %d" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value);
     /*Send message*/
     if(send(mySocket,&transactionStruct,sizeof(transactionStruct),0) == -1){
         printf("Failed The Send");
