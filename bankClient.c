@@ -87,7 +87,7 @@ int main(int argc, char **argv)
     //Declare struct to receive message
     sBANK_PROTOCOL transactionReceived;
     //receive message and convert values
-    if(recv(mySocket, &transactionReceived, sizeof(&transactionReceived),0) == -1){
+    if(recv(mySocket, &transactionReceived, sizeof(transactionReceived),0) == -1){
         printf("Failed The Receipt");
     }
 
