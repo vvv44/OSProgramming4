@@ -8,6 +8,9 @@
 #include "banking.h"
 #include  <unistd.h>
 
+/*Program includes supported use of characters (B,D and W as specified in guideline) or direct numbers (0,1,2 corresponding to
+transactions according to the banking header file) so when running it one should try to stick to using those formats.*/
+
 int setupTCPClient(char *servIPAddr, unsigned int portNum)
 {
     int clientSocket;
