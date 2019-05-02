@@ -75,10 +75,10 @@ int main(int argc, char **argv)
     /*Set up structure for transaction*/
     sBANK_PROTOCOL transactionStruct = {transNum, accNum, valNum};
     /*Convert values to network byte order*/
- /*    transactionStruct.trans = htons(transactionStruct.trans);
+    transactionStruct.trans = htons(transactionStruct.trans);
     transactionStruct.acctnum = htons(transactionStruct.acctnum);
     transactionStruct.value = htons(transactionStruct.value); 
-  */
+ 
     printf("%d , %d , %d \n" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value);
     /*Send message*/
     if(send(mySocket,&transactionStruct,sizeof(transactionStruct),0) == -1){
