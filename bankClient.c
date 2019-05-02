@@ -93,17 +93,17 @@ int main(int argc, char **argv)
 
     //Interpret values
     if(transactionReceived.trans == 2){ //BALANCE INQUIRY
-        printf("The balance on the account %d is: %d dollars" , transactionReceived.acctnum, transactionReceived.value);
+        printf("The balance on the account %d is: %d dollars \n" , transactionReceived.acctnum, transactionReceived.value);
     }
     else if(transactionReceived.trans == 1){//WITHDRAW
         if(transactionReceived.value == 0){
-            printf("Insufficient Funds");
+            printf("Insufficient Funds \n");
         }else{
-            printf("Transaction Completed. Withdrawn ammount: %d from account : %d", transactionReceived.value, transactionReceived.acctnum);
+            printf("Transaction Completed. Withdrawn ammount: %d from account : %d \n", transactionReceived.value, transactionReceived.acctnum);
         }
     }
     else{//DEPOSIT
-        printf("Transaction Completed. Deposited amount: %d into account: %d", transactionReceived.value, transactionReceived.acctnum);
+        printf("Transaction Completed. Deposited amount: %d into account: %d \n", transactionReceived.value, transactionReceived.acctnum);
     }
 
     close(mySocket);
