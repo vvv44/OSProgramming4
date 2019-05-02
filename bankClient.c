@@ -92,10 +92,11 @@ int main(int argc, char **argv)
     if(recv(mySocket, &transactionReceived, sizeof(&transactionReceived),0) == -1){
         printf("Failed The Receipt");
     }
-     printf("%d , %d , %d \n" , transactionReceived.trans, transactionReceived.acctnum, transactionReceived.value);
-   /*  transactionReceived.trans =  ntohs(transactionReceived.trans);
+    transactionReceived.trans =  ntohs(transactionReceived.trans);
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
-    transactionReceived.value =  ntohs(transactionReceived.value); */
+    transactionReceived.value =  ntohs(transactionReceived.value);
+     printf("%d , %d , %d \n" , transactionReceived.trans, transactionReceived.acctnum, transactionReceived.value);
+   
 
     //Interpret values
    /*  if(transactionReceived.trans == 2){ //BALANCE INQUIRY
