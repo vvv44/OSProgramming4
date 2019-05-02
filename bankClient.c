@@ -63,7 +63,18 @@ int main(int argc, char **argv)
 
     /*Convert Variables to integers*/
     /*First make argv[3] the command, into an integer, and check if it is a valid transaction*/
-    int transNum = atoi(argv[3]); //make command into int
+
+    int transNum; //int where transaction number will be stored
+
+    //Check if command is written in a character form
+    if(argv[3] == 'B')
+        transNum = 2;
+    else if(argv[3] == 'D')
+        transNum = 0;
+    else if(argv[3] == 'W')
+        transNum = 1;    
+    else
+        transNum = atoi(argv[3]); //make command into int
     if(transNum > 2 || transNum < 0){
         printf("Invalid Transaction."); 
         return -1;
