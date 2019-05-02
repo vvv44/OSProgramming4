@@ -85,13 +85,26 @@ int main(int argc, char **argv)
     /*Receive message and process*/
     //Declare struct to receive message
     sBANK_PROTOCOL transactionReceived;
-    //receive message
+    //receive message and convert values
     recv(mySocket, &transactionReceived, sizeof(transactionReceived),0);
     transactionReceived.trans =  ntohs(transactionReceived.trans);
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
     transactionReceived.value =  ntohs(transactionReceived.value);
 
-
+    //Interpret values
+    if(transactionReceived.trans == 2){ //BALANCE INQUIRY
+        printf("The balance on the account %d is: %d dollars" , transactionReceived.acctnum, transactionReceived.value);
+    }
+    else if(transactionReceived.trans == 1){//WITHDRAW
+        if(transactionReceived.value == 0){
+            printf("Insufficient Funds");
+        }else{
+            printf("Transaction Completed. Withdrawn ammount: %d from account : %d", transactionReceived.value, transactionReceived.acctnum);
+        }
+    }
+    else{//DEPOSIT
+        printf("Transaction Completed. Deposited amount: %d into account: %d", transactionReceived.value, transactionReceived.acctnum);
+    }
 
     close(mySocket);
 }
