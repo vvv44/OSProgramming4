@@ -59,6 +59,9 @@ int main(int argc, char **argv)
     {
         return -1;
     }
+    /*FIXME: PRINT TO CHECK*/
+    printf("Connected, will try to do more things.");
+
     /*Convert Variables to integers*/
     /*First make argv[3] the command, into an integer, and check if it is a valid transaction*/
     int transNum = atoi(argv[3]); //make command into int
