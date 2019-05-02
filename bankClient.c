@@ -80,15 +80,19 @@ int main(int argc, char **argv)
     transactionStruct.value = htons(transactionStruct.value); */
 
     /*Send message*/
-    send(mySocket,&transactionStruct,sizeof(transactionStruct),0);
+    if(send(mySocket,&transactionStruct,sizeof(transactionStruct),0) == -1){
+        printf("Failed The Send");
+    }
     
     /*Receive message and process*/
     //Declare struct to receive message
     sBANK_PROTOCOL transactionReceived;
     char buffer[1500];
     //receive message and convert values
-    recv(mySocket, &buffer, 1500,0);
-    printf("%s", buffer);
+    if(recv(mySocket, &buffer, 1500,0) == -1){
+        printf("Failed The Receipt");
+    }
+    printf("%s \n", buffer);
     /* transactionReceived.trans =  ntohs(transactionReceived.trans);
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
     transactionReceived.value =  ntohs(transactionReceived.value); */
