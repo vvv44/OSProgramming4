@@ -92,8 +92,7 @@ int main(int argc, char **argv)
     if(recv(mySocket, &transactionReceived, sizeof(&transactionReceived),0) == -1){
         printf("Failed The Receipt");
     }
-    printf("%s \n", transactionReceived);
-    /* transactionReceived.trans =  ntohs(transactionReceived.trans);
+   /*  transactionReceived.trans =  ntohs(transactionReceived.trans);
     transactionReceived.acctnum =  ntohs(transactionReceived.acctnum);
     transactionReceived.value =  ntohs(transactionReceived.value); */
 
