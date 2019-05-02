@@ -54,16 +54,12 @@ int main(int argc, char **argv)
 	/* Setup TCP port number */
 	portNum = atoi(argv[2]);
 
-    /*FIXME: PRINT TO CHECK*/
-    printf("NOT Connected, will try to do more things.");
 
     /* Setup the client socket */
     if((mySocket = setupTCPClient(serverIP, portNum)) < 0)
     {
         return -1;
     }
-    /*FIXME: PRINT TO CHECK*/
-    printf("Connected, will try to do more things.");
 
     /*Convert Variables to integers*/
     /*First make argv[3] the command, into an integer, and check if it is a valid transaction*/
