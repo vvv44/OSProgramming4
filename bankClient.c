@@ -75,7 +75,7 @@ int main(int argc, char **argv)
     /*Set up structure for transaction*/
     sBANK_PROTOCOL transactionStruct = {transNum, accNum, valNum};
  
-    printf("%d , %d , %d \n" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value);
+    printf("%d , %d , %d \n" , transactionStruct.trans, transactionStruct.acctnum, transactionStruct.value/100);
     /*Send message*/
     if(send(mySocket,&transactionStruct,sizeof(transactionStruct),0) == -1){
         printf("Failed The Send");
@@ -89,22 +89,22 @@ int main(int argc, char **argv)
         printf("Failed The Receipt");
     }
  
-    printf("%d , %d , %d \n" , transactionReceived.trans, transactionReceived.acctnum, transactionReceived.value);
+    printf("%d , %d , %d \n" , transactionReceived.trans, transactionReceived.acctnum, transactionReceived.value/100);
   
 
     //Interpret values
     if(transactionReceived.trans == 2){ //BALANCE INQUIRY
-        printf("The balance on the account %d is: %d dollars \n" , transactionReceived.acctnum, transactionReceived.value);
+        printf("The balance on the account %d is: %d dollars \n" , transactionReceived.acctnum, transactionReceived.value/100);
     }
     else if(transactionReceived.trans == 1){//WITHDRAW
         if(transactionReceived.value == 0){
             printf("Insufficient Funds \n");
         }else{
-            printf("Transaction Completed. Withdrawn ammount: %d from account : %d \n", transactionReceived.value, transactionReceived.acctnum);
+            printf("Transaction Completed. Withdrawn ammount: %d from account : %d \n", transactionReceived.value/100, transactionReceived.acctnum);
         }
     }
     else{//DEPOSIT
-        printf("Transaction Completed. Deposited amount: %d into account: %d \n", transactionReceived.value, transactionReceived.acctnum);
+        printf("Transaction Completed. Deposited amount: %d into account: %d \n", transactionReceived.value/100, transactionReceived.acctnum);
     }
 
     close(mySocket);
